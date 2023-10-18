@@ -1,0 +1,45 @@
+
+.usersList .dx-placeholder {
+    right: 0;
+    left: unset;
+}
+.upperDiv{
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 4px;
+    box-shadow: 5px 5px 5px #9c9c9c
+}
+.upperDiv h2{
+    font-weight: 500;
+    font-size: 20px;
+    color: #6E6B7B;
+    padding: 0 0 10px 0;
+}
+.userFilter .inputFilter{
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.userDataGrid{
+    background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 5px 5px 6px #9c9c9c;
+}
+.usersList .dx-datagrid-headers.dx-datagrid-nowrap {
+    background-color: #5e56aa;
+    color: #fff;
+    font-weight: bold;
+}
+.userDataGrid .dx-datagrid .dx-column-lines > td{
+    border: 1px solid #5e56aa;
+    border-top: 0;
+}
+.dx-datagrid-headers .dx-datagrid-table .dx-row > td{
+    border-bottom: 0;
+}
+.dx-overlay-wrapper.dx-popup-wrapper.dx-datagrid-edit-popup.dx-overlay-shader{background-color: rgba(0,0,0,0.5);}
+.dx-overlay-content.dx-popup-normal.dx-resizable{height: 40vh !important;width: 40vw !important;}
+.dx-pager .dx-page-sizes{float: right !important;}
+.dx-pager .dx-pages{float: left !important;}

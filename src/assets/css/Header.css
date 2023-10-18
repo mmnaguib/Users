@@ -1,0 +1,117 @@
+
+.header{
+    width: calc(100vw - (100vw - 100%) - 0.0rem - 60px);
+    position: fixed;
+    left: 0;
+    margin: 1.3rem 2rem 0;
+    border-radius: 0.428rem;
+    z-index: 12;
+    background-color: #f3f3f3;
+    box-shadow: 5px 5px #e2e2e2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 5rem;
+    padding: 0 50px;
+}
+.notification {position: relative;margin-right: 20px;}
+.right{
+    display: flex;
+    width: 50%
+}
+.homeLable{
+    margin-right: 10px;
+    color: #075b7d !important;
+    font-weight: bold;
+}
+.right i{
+    color: #075b7d !important;
+    font-size: 20px;
+}
+.noti-content{
+    position: absolute;
+    background: #fff;
+    width: 400px;
+    padding: 15px;
+    box-shadow: 0 0 5px 5px #eaeaea;
+    min-height: 500px;
+    max-width: 800px;
+    overflow-y: auto;
+}
+.noti-content .noti-header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+}
+.noti-content .noti-header h5 {
+    margin-bottom: 10px;
+}
+.left i{
+    font-size: 20px;
+    margin-left: 10px;
+}
+.left .fa-arrow-right-from-bracket{
+    color: #f00;
+    border-right: 5px solid #ddd;
+    padding-right: 10px;
+}
+.notification .notiNumber{
+    position: absolute;
+    top: -10px;
+    background: #f00;
+    border-radius: 50%;
+    min-width: 20px;
+    min-height: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #fff;
+    left: -18px
+}
+
+.searchBox{
+    background-color: #fff;
+    padding: 15px;
+    color: #6E6B7B;
+    width: 400px;
+    border-radius: 4px;
+}
+.searchBox i.fa-search{
+    margin-left: 5px;
+}
+.left i.fa-user,
+.left i.fa-arrow-right-from-bracket{
+    font-size: 30px;
+}
+.searchBox input {
+    border: 0;
+    outline: none;
+    width: 90%;
+}
+.searchBox input::placeholder {
+    font-size: 12px;
+}
+.fa-user::after{
+    content: '';
+    width: 11px;
+    height: 11px;
+    border: 1px solid #fff;
+    display: block;
+    background-color: #28C76F;
+    position: absolute;
+    left: 6px;
+    border-radius: 50%;
+    bottom: -4px;
+}
+.userRole{
+    display: inline-block;
+    width: 40px;
+    text-align: left;
+    font-size: 14px;
+    position: relative;
+    top: 5px;
+    margin-left: 10px;
+}
+.userRole span:last-of-type{
+    font-size: 12px;
+    color: #6E6B7B;
+}
