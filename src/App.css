@@ -4,3 +4,8 @@ body{
 .content{
     padding: calc(1rem + 4.45rem + 1.3rem) 2rem 0;
 }
+
+.dx-placeholder {
+    right: 0;
+    left: unset !important;
+}
