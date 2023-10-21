@@ -1,7 +1,7 @@
 import { Button, TextBox } from "devextreme-react";
 import { useState, useCallback, SetStateAction } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../store/slices/AuthSlice";
+//import { loginUser } from "../store/slices/AuthSlice";
 import { UseAppDispatch, UseAppSelector } from "../store/hooks";
 const Login = () => {
   const navigate = useNavigate();
@@ -17,14 +17,7 @@ const Login = () => {
   const { error, loading } = UseAppSelector((state) => state.auth);
   const submitHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const userAcc = { email, pass };
-    dispatch(loginUser(userAcc)).then((result) => {
-      if (result.payload) {
-        setEmail("");
-        setPass("");
-        navigate("/home");
-      }
-    });
+    
   };
   return (
     <section className="h-100 bg-dark">

@@ -1,11 +1,13 @@
 import { Button, TextBox } from "devextreme-react"
 import { SetStateAction, useCallback, useState } from "react";
-//import { register } from "../store/slices/AuthSlice";
-//import { UseAppDispatch, UseAppSelector } from "../store/hooks";
+import { register } from "../store/slices/AuthSlice";
+import { useNavigate } from "react-router-dom";
+import { UseAppDispatch } from "../store/hooks";
 const Register = () => {
-  //  const dispatch = UseAppDispatch();
+  const navigate = useNavigate();
+  const dispatch = UseAppDispatch();
     const [name, setName] = useState<string>('')
-    const [pass, setPass] = useState<string>('')
+    const [password, setPass] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const HandleName = useCallback((e: SetStateAction<string>) => {
         setName(e)
@@ -16,9 +18,17 @@ const Register = () => {
       const HandleEmail = useCallback((e: SetStateAction<string>) => {
         setEmail(e)
       }, []);
-      const submitHandler = () => {
-        //dispatch(register({name,pass, email}))
-      }
+      const submitHandler = (e: { preventDefault: () => void }) => {
+        e.preventDefault();
+        const userAcc = { email, password, name };
+        dispatch(register(userAcc)).then((result) => {
+          if (result.payload) {
+            setEmail("");
+            setPass("");
+            navigate("/");
+          }
+        });
+      };
   return (
     <section className="h-100 bg-dark">
   <div className="container py-5 h-100">
@@ -34,6 +44,7 @@ const Register = () => {
             <div className="col-xl-8">
               <div className="card-body p-md-5 text-black">
                 <h3 className="mb-5 text-uppercase text-center">تسجيل مستخدم جديد</h3>
+                <form onSubmit={submitHandler}>
                 <div className="row">
                   <div className="col-md-12 mb-4">
                     <div className="form-outline">
@@ -70,7 +81,7 @@ const Register = () => {
                         className="form-control form-control-lg inputFilter col-md-5"
                         placeholder="كلمة السر"
                         showClearButton={true}
-                        value={pass}
+                        value={password}
                         onValueChange={HandlePass}
                         id="form3Example1n" 
                         mode="password"
@@ -79,9 +90,9 @@ const Register = () => {
                   </div>
                 </div>
                 <div className="d-flex justify-content-end pt-3">
-                  <Button type="success" className="btn btn-warning btn-lg ms-2" onClick={submitHandler}>حفظ</Button>
+                  <Button type="success" useSubmitBehavior={true} className="btn btn-warning btn-lg ms-2" >حفظ</Button>
                 </div>
-
+</form>
               </div>
             </div>
           </div>

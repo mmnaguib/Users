@@ -1,29 +1,28 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+
+type AuthType = {
+    name: string
+    password: string,
+    email: string
+}
 type AuthStateType = {
-    user: string | null
+    user: AuthType | null
     loading: boolean,
     error: string | null
 }
 const initialState:AuthStateType = {
-    user: "",
+    user: {
+        name: '',
+        password: '',
+        email: ''
+    },
     loading: false,
     error: null,
 }
-
-/*export const register =  createAsyncThunk('register', async (arg) => {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(arg)
-    };
-    const res = await fetch('http://localhost:3005/users', requestOptions);
-    return await res.json();
-});
-*/
-export const loginUser =  createAsyncThunk('login/loginUser', async (bookData:{email: string, pass:string}) => {
+export const register =  createAsyncThunk('auth/register', async (userData:AuthType) => {
     const res = await fetch('http://localhost:3005/users', {
         method: 'POST',
-        body: JSON.stringify(bookData),
+        body: JSON.stringify(userData),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
@@ -32,21 +31,21 @@ export const loginUser =  createAsyncThunk('login/loginUser', async (bookData:{e
       return data;
 });
 const AuthSlice = createSlice({
-    name: 'login',
+    name: 'auth',
     initialState,
     reducers:{},
     extraReducers(builder) {
-        builder.addCase(loginUser.pending, (state) => {
+        builder.addCase(register.pending, (state) => {
             state.loading = true
             state.user = null
             state.error = null
         });
-        builder.addCase(loginUser.fulfilled, (state,action) => {
+        builder.addCase(register.fulfilled, (state,action) => {
             state.loading = false;
             state.user = action.payload;
             state.error = null
         });
-        builder.addCase(loginUser.rejected, (state, action) => {
+        builder.addCase(register.rejected, (state, action) => {
             console.log(action)
             state.loading = true;
             state.user = null
@@ -56,14 +55,6 @@ const AuthSlice = createSlice({
                 state.error ? action.error.message : null
             }
         });
-
-
-        /*builder.addCase(register.pending, (state) => {
-        });
-        builder.addCase(register.fulfilled, (state,action) => {
-        });
-        builder.addCase(register.rejected, (state) => {
-        });*/
     }
 })
 
