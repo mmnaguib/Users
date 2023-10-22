@@ -1,10 +1,13 @@
 import { useState } from "react"
-import '../assets/css/Header.css'
+import '../assets/css/Header.css';
+import { UseAppSelector } from "../store/hooks";
+
 const Header = () => {
     const [showBox, setShowBox] = useState<boolean>(false);
     const [dark, setDark] = useState<boolean>(false);
     const [notifacations, setNotifacations] = useState<boolean>(false);
-    
+    const user = UseAppSelector((state) => state.auth.user.name);
+    console.log(user)
   return (
     <div className={dark ? "dark header" : 'header'}>
         <div className='right'>
@@ -22,7 +25,6 @@ const Header = () => {
                         <i className="fa-regular fa-envelope"></i>
                     </div>
                     <div className="noti-body">
-
                     </div>
                 </div>
                 }

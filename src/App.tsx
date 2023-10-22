@@ -4,7 +4,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import User from './components/User'
 import 'devextreme/dist/css/dx.light.css';
-
+import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer} from 'react-toastify';
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 function App() {
 
@@ -19,6 +20,8 @@ function App() {
         <Route path='/user' element={<User />}/>
       </Routes>
     </Router>
+    <ToastContainer />
+
     </>
   )
 }

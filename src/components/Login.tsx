@@ -1,12 +1,13 @@
 import { Button, TextBox } from "devextreme-react";
 import { useState, useCallback, SetStateAction } from "react";
-import { Link, useNavigate } from "react-router-dom";
-//import { loginUser } from "../store/slices/AuthSlice";
+import { Link } from "react-router-dom";
+import { login } from "../store/slices/AuthSlice";
 import { UseAppDispatch, UseAppSelector } from "../store/hooks";
+import {useEffect} from 'react';
 const Login = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const dispatch = UseAppDispatch();
-  const [pass, setPass] = useState<string>("");
+  const [password, setPass] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const HandlePass = useCallback((e: SetStateAction<string>) => {
     setPass(e);
@@ -14,11 +15,20 @@ const Login = () => {
   const HandleEmail = useCallback((e: SetStateAction<string>) => {
     setEmail(e);
   }, []);
-  const { error, loading } = UseAppSelector((state) => state.auth);
+  const { loading } = UseAppSelector((state) => state.auth);
   const submitHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    
+    dispatch(login({email, password})).then((rslt) => {
+      if(rslt){
+        console.log(rslt.payload)
+      }
+    })
   };
+
+  
+  useEffect(()=>{
+    sessionStorage.clear();
+        },[]);
   return (
     <section className="h-100 bg-dark">
       <div className="container py-5 h-100">
@@ -76,7 +86,7 @@ const Login = () => {
                               className="form-control form-control-lg inputFilter col-md-5"
                               placeholder="كلمة السر"
                               showClearButton={true}
-                              value={pass}
+                              value={password}
                               onValueChange={HandlePass}
                               id="form3Example1n"
                               mode="password"
@@ -100,12 +110,6 @@ const Login = () => {
                     >
                       تسجيل
                     </Link>
-                    {error && (
-                      <div className="alert alert-danger">
-                        {" "}
-                        البريد الالكتروني أو كلمة المرور خطأ ...
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
